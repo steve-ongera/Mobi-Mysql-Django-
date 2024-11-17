@@ -6,7 +6,7 @@ from django.contrib import messages
 from decimal import Decimal  # Import Decimal for type conversion
 from django.contrib import messages
 from .forms import CustomRegistrationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate ,logout
 
 
 
@@ -181,3 +181,11 @@ def custom_login(request):
             return redirect('login')
 
     return render(request, 'auth/login.html')
+
+
+
+def custom_logout(request):
+    # Log the user out
+    logout(request)
+    messages.success(request, "You have been successfully logged out.")
+    return redirect('login')  # Redirect to login page or any other page
