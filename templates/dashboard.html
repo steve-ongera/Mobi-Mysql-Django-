@@ -27,9 +27,10 @@
     <div class="container">
         <header class="header">
             <div class="profile">
-                <div class="avatar">MK</div>
+                <div class="avatar">{{ request.user.username|slice:":2" }}</div>
                 <div>
-                    <div class="greeting">Good morning,</div>
+                    <!-- Greeting Section -->
+                    <div class="greeting" id="greeting">  </div>
                     <div class="name">{{ request.user.username }} 👋</div>
                 </div>
             </div>
@@ -215,5 +216,7 @@
         }
     });
 </script>
+
+<script src="{% static 'js/greeting.js' %}"></script>
 </body>
 </html>
