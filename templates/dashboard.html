@@ -1,0 +1,11 @@
+<h1>Welcome {{ request.user.username }}</h1>
+<p>Balance: Ksh {{ account.balance }}</p>
+<a href="{% url 'deposit' %}">Deposit</a> |
+<a href="{% url 'withdraw' %}">Withdraw</a> |
+<a href="{% url 'send_money' %}">Send Money</a>
+<h2>Transactions</h2>
+<ul>
+    {% for transaction in transactions %}
+        <li>{{ transaction.sender }} -> {{ transaction.receiver }}: Ksh {{ transaction.amount }}</li>
+    {% endfor %}
+</ul>

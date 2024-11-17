@@ -1,0 +1,5 @@
+<h1>Withdraw</h1>
+<form method="post">{% csrf_token %}
+    <input type="number" name="amount" step="0.01" placeholder="Amount">
+    <button type="submit">Withdraw</button>
+</form>
