@@ -1,3 +1,4 @@
+{% comment %}
 <h1>Welcome {{ request.user.username }}</h1>
 <p>Balance: Ksh {{ account.balance }}</p>
 <a href="{% url 'deposit' %}">Deposit</a> |
@@ -9,3 +10,148 @@
         <li>{{ transaction.sender }} -> {{ transaction.receiver }}: Ksh {{ transaction.amount }}</li>
     {% endfor %}
 </ul>
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Banking App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="profile">
+                <div class="avatar">MK</div>
+                <div>
+                    <div class="greeting">Good morning,</div>
+                    <div class="name">{{ request.user.username }} 👋</div>
+                </div>
+            </div>
+            <div class="icons">
+                <span class="lucide-bell"></span>
+                <span class="lucide-clock"></span>
+                <span class="lucide-qr-code"></span>
+            </div>
+        </header>
+
+        <div class="balance-card">
+            <div class="balance-label">Balance</div>
+            <div class="balance-amount">
+                Ksh. {{ account.balance }}
+                <span class="lucide-eye-off"></span>
+            </div>
+            <div class="fuliza">Available FULIZA: KSH 0.00</div>
+        </div>
+
+        <div class="actions">
+            <div class="action-button">
+                <div class="action-icon send-request">
+                    <span class="lucide-repeat"></span>
+                </div>
+                <div class="action-label">SEND AND<br>REQUEST</div>
+            </div>
+            <div class="action-button">
+                <div class="action-icon pay">
+                    <span class="lucide-credit-card"></span>
+                </div>
+                <div class="action-label">PAY</div>
+            </div>
+            <div class="action-button">
+                <div class="action-icon withdraw">
+                    <span class="lucide-arrow-down"></span>
+                </div>
+                <div class="action-label">WITHDRAW</div>
+            </div>
+            <div class="action-button">
+                <div class="action-icon airtime">
+                    <span class="lucide-phone"></span>
+                </div>
+                <div class="action-label">AIRTIME</div>
+            </div>
+        </div>
+
+        <div class="statements">
+            <div class="statements-header">
+                <div class="statements-title">M-PESA STATEMENTS</div>
+                <a href="#" class="see-all">SEE ALL</a>
+            </div>
+            <div class="transaction">
+                <div class="transaction-left">
+                    <div class="transaction-avatar">F2</div>
+                    <div class="transaction-info">
+                        <div>FRANCIS 2</div>
+                        <div class="transaction-date">17 Nov, 09:47 PM</div>
+                    </div>
+                </div>
+                <div class="transaction-amount">- KSH. 65.00</div>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="/api/placeholder/400/150" alt="Safarilink Promotion">
+        </div>
+
+        <div class="financial-services">
+            <div class="services-header">
+                <div class="statements-title">Financial Services</div>
+                <a href="#" class="see-all">View all</a>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/40/40" alt="Mali">
+                    </div>
+                    <div class="service-name">Mali</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/40/40" alt="M-PESA Ratiba">
+                    </div>
+                    <div class="service-name">M-PESA Ratiba</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/40/40" alt="M-Shwari">
+                    </div>
+                    <div class="service-name">M-Shwari</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/40/40" alt="KCB M-PESA">
+                    </div>
+                    <div class="service-name">KCB M-PESA</div>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <nav class="bottom-nav">
+            <a href="{% url 'dashboard'%}" class="nav-item active">
+                <span class="lucide-home"></span>
+                HOME
+            </a>
+            <a href="#" class="nav-item">
+                <span class="lucide-repeat"></span>
+                TRANSACT
+            </a>
+            <a href="#" class="nav-item">
+                <span class="lucide-grid"></span>
+                SERVICES
+            </a>
+            <a href="{% url 'logout'%}" class="nav-item">
+                <span class="lucide-trending-up"></span>
+                LOGOUT
+            </a>
+        </nav>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

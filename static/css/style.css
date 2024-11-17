@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+}
+
+.header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #e8f7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00b3ff;
+    font-weight: bold;
+}
+
+.greeting {
+    color: #666;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.balance-card {
+    margin: 20px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.balance-label {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.balance-amount {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.fuliza {
+    color: #007aff;
+    font-size: 0.9em;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.send-request { background: #00c853; }
+.pay { background: #2979ff; }
+.withdraw { background: #ff1744; }
+.airtime { background: #00b3ff; }
+
+.action-label {
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+}
+
+.statements {
+    padding: 20px;
+}
+
+.statements-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.statements-title {
+    font-weight: bold;
+}
+
+.see-all {
+    color: #00c853;
+    text-decoration: none;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.transaction-avatar {
+    width: 40px;
+    height: 40px;
+    background: #e8f7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.transaction-amount {
+    color: #ff1744;
+    font-weight: bold;
+}
+
+.transaction-date {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.banner {
+    margin: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+.financial-services {
+    padding: 20px;
+}
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-name {
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+.nav-item.active {
+    color: #00c853;
+}
