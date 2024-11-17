@@ -79,35 +79,60 @@
         <div class="statements">
             <div class="statements-header">
                 <div class="statements-title">M-PESA STATEMENTS</div>
-                <a href="#" class="see-all">SEE ALL</a>
+                <a href="#" id="see-all-btn" class="see-all">SEE ALL</a>
             </div>
         
-            <!-- Loop through each transaction and display it -->
-            {% for transaction in transactions %}
-                <div class="transaction">
-                    <div class="transaction-left">
-                        <div class="transaction-avatar">
-                            <!-- You can modify this to show an avatar or an initial -->
-                            {{ transaction.sender.first_name|slice:":2" }} <!-- Display the first two letters of the sender's first name -->
-                        </div>
-                        <div class="transaction-info">
-                            <div>{{ transaction.sender.first_name }} {{ transaction.sender.last_name }}</div>
-                            <div class="transaction-date">
-                                <!-- You can adjust this format as needed -->
-                                {{ transaction.date|date:"d M, H:i A" }}xx  <!-- Adjust the date format -->
+            <!-- Show only the 2 most recent transactions -->
+            <div id="recent-transactions">
+                {% for transaction in recent_transactions %}
+                    <div class="transaction">
+                        <div class="transaction-left">
+                            <div class="transaction-avatar">
+                                {{ transaction.sender.first_name|slice:":2" }}  <!-- First two letters of sender's name -->
+                            </div>
+                            <div class="transaction-info">
+                                <div>{{ transaction.sender.first_name }} {{ transaction.sender.last_name }}</div>
+                                <div class="transaction-date">
+                                    {{ transaction.timestamp|date:"d M, H:i A" }}  <!-- Adjust the date format to use timestamp -->
+                                </div>
                             </div>
                         </div>
+                        <div class="transaction-amount">
+                            {% if transaction.sender == user %}
+                                - Ksh {{ transaction.amount }}
+                            {% else %}
+                                + Ksh {{ transaction.amount }}
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="transaction-amount">
-                        <!-- Display the transaction amount with sign depending on sender/receiver -->
-                        {% if transaction.sender == user %}
-                            - Ksh {{ transaction.amount }}  <!-- Negative sign for sent money -->
-                        {% else %}
-                            + Ksh {{ transaction.amount }}  <!-- Positive sign for received money -->
-                        {% endif %}
+                {% endfor %}
+            </div>
+        
+            <!-- Hidden section that shows all transactions, initially hidden -->
+            <div id="all-transactions" style="display: none;">
+                {% for transaction in transactions %}
+                    <div class="transaction">
+                        <div class="transaction-left">
+                            <div class="transaction-avatar">
+                                {{ transaction.sender.first_name|slice:":2" }}
+                            </div>
+                            <div class="transaction-info">
+                                <div>{{ transaction.sender.first_name }} {{ transaction.sender.last_name }}</div>
+                                <div class="transaction-date">
+                                    {{ transaction.timestamp|date:"d M, H:i A" }}  <!-- Adjust the date format to use timestamp -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transaction-amount">
+                            {% if transaction.sender == user %}
+                                - Ksh {{ transaction.amount }}
+                            {% else %}
+                                + Ksh {{ transaction.amount }}
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
         
 
@@ -174,5 +199,21 @@
     <script>
         lucide.createIcons();
     </script>
+
+
+<!-- Include JavaScript to toggle the visibility of the full transaction list -->
+<script>
+    document.getElementById("see-all-btn").addEventListener("click", function(event) {
+        event.preventDefault();
+        var allTransactions = document.getElementById("all-transactions");
+        if (allTransactions.style.display === "none") {
+            allTransactions.style.display = "block";  // Show the full transactions
+            this.textContent = "SEE LESS";  // Change the button text to "See Less"
+        } else {
+            allTransactions.style.display = "none";  // Hide the full transactions
+            this.textContent = "SEE ALL";  // Change the button text back to "See All"
+        }
+    });
+</script>
 </body>
 </html>

@@ -12,9 +12,25 @@ from django.contrib.auth import login, authenticate ,logout
 
 @login_required
 def dashboard(request):
-    account = Account.objects.get(user=request.user)
-    transactions = Transaction.objects.filter(sender=request.user) | Transaction.objects.filter(receiver=request.user)
-    return render(request, 'dashboard.html', {'account': account, 'transactions': transactions})
+    # Get the logged-in user
+    user = request.user
+
+    # Retrieve the account associated with the logged-in user
+    account = Account.objects.get(user=user)
+
+    # Get transactions related to the user (as sender or receiver)
+    transactions = Transaction.objects.filter(sender=user) | Transaction.objects.filter(receiver=user)
+    transactions = transactions.order_by('-timestamp')  # Sort by timestamp (most recent first)
+
+    recent_transactions = transactions[:2]  # Get the 2 most recent transactions
+
+    context = {
+        'account': account,
+        'recent_transactions': recent_transactions,
+        'transactions': transactions,
+    }
+
+    return render(request, 'dashboard.html', context)
 
 @login_required
 def deposit(request):
