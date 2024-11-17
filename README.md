@@ -42,8 +42,8 @@ MOBI is a robust Django-based mobile banking application that provides secure an
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/steve-ongera/mobi.git
-cd mobi
+git clone https://github.com/steve-ongera/Mobi-Mysql-Django-.git
+cd mpesa_app
 ```
 
 2. **Create and activate virtual environment**
