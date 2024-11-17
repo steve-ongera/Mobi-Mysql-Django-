@@ -5,6 +5,8 @@ from .models import Account, Transaction
 from django.contrib import messages
 from decimal import Decimal  # Import Decimal for type conversion
 from django.contrib import messages
+from .forms import CustomRegistrationForm
+from django.contrib.auth import login
 
 
 
@@ -140,3 +142,22 @@ def send_money(request):
             messages.error(request, f'An error occurred: {e}')
     
     return render(request, 'send_money.html')
+
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password1'])  # Set hashed password
+            user.save()
+            login(request, user)
+            messages.success(request, "Account created successfully.")
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Registration failed. Please correct the errors below.")
+    else:
+        form = CustomRegistrationForm()
+    return render(request, 'register.html', {'form': form})
