@@ -1,3 +1,4 @@
+{% load static %}
 {% comment %}
 <h1>Welcome {{ request.user.username }}</h1>
 <p>Balance: Ksh {{ account.balance }}</p>
@@ -13,12 +14,14 @@
 {% endcomment %}
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Banking App</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div class="container">
