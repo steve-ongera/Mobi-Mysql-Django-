@@ -160,7 +160,7 @@ def register(request):
             messages.error(request, "Registration failed. Please correct the errors below.")
     else:
         form = CustomRegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'auth/register.html', {'form': form})
 
 
 def custom_login(request):
