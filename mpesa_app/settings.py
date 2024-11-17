@@ -63,23 +63,23 @@ WSGI_APPLICATION = 'mpesa_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'safaricom',  # The database name you created
-        'USER': 'root',  # XAMPP default user is 'root'
-        'PASSWORD': '',  # Leave blank if no password is set for root
-        'HOST': '127.0.0.1',  # Or 'localhost'
-        'PORT': '3306',  # Default MySQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'safaricom',  # The database name you created
+#         'USER': 'root',  # XAMPP default user is 'root'
+#         'PASSWORD': '',  # Leave blank if no password is set for root
+#         'HOST': '127.0.0.1',  # Or 'localhost'
+#         'PORT': '3306',  # Default MySQL port
+#     }
+# }
 
 
 
