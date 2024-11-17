@@ -81,17 +81,35 @@
                 <div class="statements-title">M-PESA STATEMENTS</div>
                 <a href="#" class="see-all">SEE ALL</a>
             </div>
-            <div class="transaction">
-                <div class="transaction-left">
-                    <div class="transaction-avatar">F2</div>
-                    <div class="transaction-info">
-                        <div>FRANCIS 2</div>
-                        <div class="transaction-date">17 Nov, 09:47 PM</div>
+        
+            <!-- Loop through each transaction and display it -->
+            {% for transaction in transactions %}
+                <div class="transaction">
+                    <div class="transaction-left">
+                        <div class="transaction-avatar">
+                            <!-- You can modify this to show an avatar or an initial -->
+                            {{ transaction.sender.first_name|slice:":2" }} <!-- Display the first two letters of the sender's first name -->
+                        </div>
+                        <div class="transaction-info">
+                            <div>{{ transaction.sender.first_name }} {{ transaction.sender.last_name }}</div>
+                            <div class="transaction-date">
+                                <!-- You can adjust this format as needed -->
+                                {{ transaction.date|date:"d M, H:i A" }}xx  <!-- Adjust the date format -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transaction-amount">
+                        <!-- Display the transaction amount with sign depending on sender/receiver -->
+                        {% if transaction.sender == user %}
+                            - Ksh {{ transaction.amount }}  <!-- Negative sign for sent money -->
+                        {% else %}
+                            + Ksh {{ transaction.amount }}  <!-- Positive sign for received money -->
+                        {% endif %}
                     </div>
                 </div>
-                <div class="transaction-amount">- KSH. 65.00</div>
-            </div>
+            {% endfor %}
         </div>
+        
 
         <div class="banner">
             <img src="/api/placeholder/400/150" alt="Safarilink Promotion">
