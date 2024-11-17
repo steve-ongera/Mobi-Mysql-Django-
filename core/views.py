@@ -6,7 +6,7 @@ from django.contrib import messages
 from decimal import Decimal  # Import Decimal for type conversion
 from django.contrib import messages
 from .forms import CustomRegistrationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 
 
 
@@ -161,3 +161,23 @@ def register(request):
     else:
         form = CustomRegistrationForm()
     return render(request, 'register.html', {'form': form})
+
+
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Authenticate user
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            # Log the user in
+            login(request, user)
+            messages.success(request, f"Welcome back, {user.first_name}!")
+            return redirect('dashboard')  # Redirect to the dashboard or home page
+        else:
+            # Authentication failed
+            messages.error(request, "Invalid username or password.")
+            return redirect('login')
+
+    return render(request, 'login.html')
