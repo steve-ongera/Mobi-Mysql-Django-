@@ -7,7 +7,7 @@ from decimal import Decimal  # Import Decimal for type conversion
 from django.contrib import messages
 from .forms import CustomRegistrationForm
 from django.contrib.auth import login, authenticate ,logout
-
+from django.db.models import Count
 
 
 @login_required
@@ -223,3 +223,24 @@ def account_details(request):
         'user': user,  # Pass the user object to the template
     }
     return render(request, 'account.html', context)
+
+@login_required
+def transact(request):
+    user = request.user
+
+    # Get all transactions where the user is the sender
+    transactions = Transaction.objects.filter(sender=user)
+
+    # Find the most frequent recipient
+    frequent_contact = (
+        transactions.values('receiver__username', 'receiver__first_name', 'receiver__last_name')
+        .annotate(count=Count('id'))
+        .order_by('-count')
+        .first()
+    )
+
+    context = {
+        'frequent_contact': frequent_contact,  # Pass the frequent contact data
+    }
+
+    return render(request, 'transact.html', context)
