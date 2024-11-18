@@ -227,20 +227,17 @@ def account_details(request):
 @login_required
 def transact(request):
     user = request.user
-
-    # Get all transactions where the user is the sender
-    transactions = Transaction.objects.filter(sender=user)
-
-    # Find the most frequent recipient
+    
+    # Get the most frequent receiver of transactions by the logged-in user
     frequent_contact = (
-        transactions.values('receiver__username', 'receiver__first_name', 'receiver__last_name')
-        .annotate(count=Count('id'))
+        Transaction.objects.filter(sender=user, receiver__isnull=False)
+        .values('receiver__first_name', 'receiver__last_name')
+        .annotate(count=Count('receiver'))
         .order_by('-count')
         .first()
     )
 
     context = {
-        'frequent_contact': frequent_contact,  # Pass the frequent contact data
+        'frequent_contact': frequent_contact,
     }
-
     return render(request, 'transact.html', context)
