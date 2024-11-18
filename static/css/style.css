@@ -93,6 +93,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    text-decoration: none; /* Removes the default underline */
 }
 
 .action-icon {
@@ -103,6 +105,7 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
+    cursor: pointer;  /* Add this to show the hand pointer */
 }
 
 .send-request { background: #00c853; }
@@ -110,11 +113,31 @@ body {
 .withdraw { background: #ff1744; }
 .airtime { background: #00b3ff; }
 
-.action-label {
-    font-size: 0.8em;
-    color: #666;
-    text-align: center;
-}
+
+
+
+        /* Hover effect - Scale the icon and add shake */
+        .action-button:hover .action-icon {
+            transform: scale(1.2); /* Increase the size of the icon */
+            opacity: 0.9;  /* Optional, slightly decrease opacity for effect */
+            animation: shake 0.5s ease infinite; /* Shake animation */
+        }
+
+        /* Keyframes for shaking effect */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(5px); }
+        }
+
+        .action-label {
+            font-size: 14px;
+            font-weight: 450; /* Change to normal for less boldness */
+            color: #333;
+            text-align: center;
+        }
 
 .statements {
     padding: 20px;
@@ -184,6 +207,12 @@ body {
 
 .financial-services {
     padding: 20px;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.05) 70%);
+    border-radius: 15px; /* Rounded corners */
+    border: 1px solid #ddd; /* Border for the rectangle */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 20px; /* Add margin around the container */
+    margin-bottom: 55px; /* Increase bottom margin to create more space */
 }
 
 .services-header {
@@ -215,11 +244,20 @@ body {
     justify-content: center;
 }
 
+.service-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .service-name {
-    font-size: 0.8em;
+    font-size: 0.6em;
     color: #666;
     text-align: center;
 }
+
+
 
 .bottom-nav {
     position: fixed;
