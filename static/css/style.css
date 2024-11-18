@@ -344,3 +344,45 @@ body {
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
+
+.icons {
+    display: flex; /* Align icons horizontally */
+    justify-content: center; /* Center icons horizontally */
+    align-items: center; /* Center icons vertically */
+    gap: 20px; /* Add space between icons */
+    margin-top: 10px; /* Optional: Add margin above the icons */
+}
+
+.icons span {
+    font-size: 24px; /* Adjust icon size */
+    color: #333; /* Change the icon color */
+    cursor: pointer; /* Add a pointer for hover effect */
+    transition: transform 0.2s ease-in-out; /* Smooth scaling on hover */
+}
+
+.icons span:hover {
+    transform: scale(1.2); /* Slightly enlarge icon on hover */
+    color: #00cd85; /* Change color on hover */
+}
+
+/*css for blur account */
+
+.blur {
+    filter: blur(5px); /* Apply blur */
+    color: #ccc;       /* Optional: light gray color */
+}
+
+.balance-amount {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#toggle-balance {
+    font-size: 20px; /* Adjust icon size */
+    transition: color 0.3s;
+}
+
+#toggle-balance:hover {
+    color: #00cd85; /* Add hover color */
+}

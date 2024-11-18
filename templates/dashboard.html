@@ -31,20 +31,21 @@
                 </div>
             </div>
             <div class="icons">
-                <span class="lucide-bell"></span>
-                <span class="lucide-clock"></span>
-                <span class="lucide-qr-code"></span>
+                <span class="bi bi-bell"></span>
+                <span class="bi bi-graph-up-arrow"></span>
+                <span class="bi bi-qr-code-scan"></span>
             </div>
         </header>
 
         <div class="balance-card">
             <div class="balance-label">Balance</div>
             <div class="balance-amount">
-                Ksh. {{ account.balance }}
-                <span class="lucide-eye-off"></span>
+                <span id="balance-text" class="blur">Ksh. {{ account.balance }}</span>
+                <span id="toggle-balance" class="bi bi-eye" style="cursor: pointer;"></span>
             </div>
             <div class="fuliza">Available FULIZA: KSH 0.00</div>
         </div>
+        
 
         <div class="actions">
             <a href="{% url 'send_money' %}" class="action-button">
@@ -203,19 +204,19 @@
 
         <nav class="bottom-nav">
             <a href="{% url 'dashboard'%}" class="nav-item active">
-                <span class="lucide-home"></span>
+                <span class="bi bi-house"></span>
                 HOME
             </a>
             <a href="#" class="nav-item">
-                <span class="lucide-repeat"></span>
+                <span class="bi bi-arrow-left-right"></span>
                 TRANSACT
             </a>
             <a href="#" class="nav-item">
-                <span class="lucide-grid"></span>
+                <span class="bi bi-columns-gap"></span>
                 SERVICES
             </a>
             <a href="{% url 'logout'%}" class="nav-item">
-                <span class="lucide-trending-up"></span>
+                <span class="bi bi-box-arrow-right"></span>
                 LOGOUT
             </a>
         </nav>
@@ -244,5 +245,6 @@
 
 <script src="{% static 'js/greeting.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/blur_account_balance.js' %}"></script>
 </body>
 </html>
