@@ -246,3 +246,23 @@ body {
 .nav-item.active {
     color: #00c853;
 }
+
+.no-underline {
+    text-decoration: none; /* Removes the underline */
+    color: inherit;        /* Optional: Makes the link inherit the text color */
+    display: inline-block; /* Ensure the shaking effect applies properly */
+    transition: color 0.2s ease; /* Optional: Smooth color transition */
+}
+
+.no-underline:hover {
+    color: #3498db; /* Change color on hover */
+    animation: shake 0.5s ease; /* Apply the shake animation on hover */
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}

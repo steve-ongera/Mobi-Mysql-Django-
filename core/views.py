@@ -205,3 +205,13 @@ def custom_logout(request):
     logout(request)
     messages.success(request, "You have been successfully logged out.")
     return redirect('login')  # Redirect to login page or any other page
+
+
+@login_required
+def account_details(request):
+    """View to display user details."""
+    user = request.user
+    context = {
+        'user': user,  # Pass the user object to the template
+    }
+    return render(request, 'account.html', context)

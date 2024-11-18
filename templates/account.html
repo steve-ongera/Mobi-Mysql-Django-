@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Mobile Banking App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="back-button lucide-arrow-left"></span>
+            <h1 class="page-title">ACCOUNT</h1>
+        </header>
+
+        <div class="profile-section">
+            <div class="profile-info">
+                <div class="avatar">{{ request.user.username|slice:":2"|upper }}</div>
+                <div class="account-number">254757790887</div>
+            </div>
+            <button class="edit-picture">EDIT PICTURE</button>
+        </div>
+
+        <div class="quick-actions">
+            <div class="quick-action">
+                <span class="quick-action-icon lucide-briefcase" style="color: #6200ea;"></span>
+                <div class="quick-action-label">Pochi la Biashara</div>
+            </div>
+            <div class="quick-action">
+                <span class="quick-action-icon lucide-file-text" style="color: #00c853;"></span>
+                <div class="quick-action-label">M-Pesa Statements</div>
+            </div>
+            <div class="quick-action">
+                <span class="quick-action-icon lucide-pie-chart" style="color: #2979ff;"></span>
+                <div class="quick-action-label">My Spend</div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2 class="section-title">SETTINGS</h2>
+            <div class="settings-list">
+                <div class="settings-item">
+                    <div class="settings-icon purple">
+                        <span class="lucide-star"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">MANAGE FAVOURITES</div>
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-icon blue">
+                        <span class="lucide-link"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">SHARE APP LINK</div>
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-icon blue">
+                        <span class="lucide-wifi-off"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">OFFLINE MODE</div>
+                    </div>
+                    <div class="toggle-switch" id="offlineToggle"></div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-icon red">
+                        <span class="lucide-ban"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">BLOCKED BUSINESS</div>
+                        <div class="settings-description">Block business from requesting payments</div>
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-icon blue">
+                        <span class="lucide-palette"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">APPEARANCE</div>
+                        <div class="settings-description">System</div>
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-icon red">
+                        <span class="lucide-log-out"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">LOG OUT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2 class="section-title">SECURITY</h2>
+            <div class="settings-list">
+                <div class="settings-item">
+                    <div class="settings-icon green">
+                        <span class="lucide-fingerprint"></span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-label">BIOMETRIC AUTHENTICATION</div>
+                    </div>
+                    <div class="toggle-switch active" id="biometricToggle"></div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <span class="lucide-home"></span>
+                HOME
+            </a>
+            <a href="#" class="nav-item">
+                <span class="lucide-repeat"></span>
+                TRANSACT
+            </a>
+            <a href="#" class="nav-item">
+                <span class="lucide-grid"></span>
+                SERVICES
+            </a>
+            <a href="#" class="nav-item">
+                <span class="lucide-trending-up"></span>
+                GROW
+            </a>
+        </nav>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Toggle switch functionality
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // Back button functionality
+        document.querySelector('.back-button').addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

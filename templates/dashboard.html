@@ -27,7 +27,13 @@
     <div class="container">
         <header class="header">
             <div class="profile">
-                <div class="avatar">{{ request.user.username|slice:":2" }}</div>
+
+                <div class="avatar">
+                    <a href="{% url 'account_details' %}" class="no-underline">
+                        {{ request.user.username|slice:":2"|upper }}
+                    </a>
+                </div>
+
                 <div>
                     <!-- Greeting Section -->
                     <div class="greeting" id="greeting">  </div>
