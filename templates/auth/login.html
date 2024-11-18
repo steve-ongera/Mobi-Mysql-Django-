@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Viewport meta tag for better mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- Include Bootstrap Icons CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -157,6 +161,31 @@
             margin-bottom: 8px;
             text-align: center;
         }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 480px) {
+            .title {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+
+            .login-form {
+                padding: 20px;
+            }
+
+            .input-field {
+                font-size: 14px;
+            }
+
+            .continue-btn {
+                font-size: 14px;
+                padding: 12px 25px;
+            }
+
+            .password-toggle {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -222,12 +251,9 @@
 
     <script>
         document.getElementById('togglePassword').addEventListener('click', function() {
-            // Get the password input
             const passwordInput = document.getElementById('id_password');
-            // Get the eye icon
             const eyeIcon = this;
-            
-            // Toggle the password visibility
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 eyeIcon.classList.remove('bi-eye-slash');

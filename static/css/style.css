@@ -205,6 +205,46 @@ body {
     height: auto;
 }
 
+/* Container for the carousel */
+.carousel-container {
+    margin: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* The carousel itself, defines width and position */
+.carousel {
+    display: flex;
+    transition: transform 1s ease-in-out;
+    gap: 20px;  /* Added gap between images */
+}
+
+/* Each item in the carousel */
+.carousel-item {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure all images have consistent dimensions */
+.carousel-item img {
+    width: 100%;
+    height: 150px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the aspect ratio is maintained while filling the container */
+    border-radius: 15px;
+    margin: 0 2px;
+}
+
+
+/* Optional styling */
+.carousel-container {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .financial-services {
     padding: 20px;
     background: linear-gradient(to top left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.05) 70%);
