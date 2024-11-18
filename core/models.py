@@ -30,3 +30,16 @@ class Transaction(models.Model):
             return f"Transaction from {self.sender.username} to {self.receiver.username} of Ksh {self.amount}"
         else:
             return f"Transaction from {self.sender.username} to Self (Withdrawal) of Ksh {self.amount}"
+
+
+class Fuliza(models.Model):
+    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+    limit = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)  # Fuliza overdraft limit
+    used = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)   # Amount of Fuliza already used
+
+    def available_fuliza(self):
+        """Calculate the available Fuliza overdraft."""
+        return self.limit - self.used
+
+    def __str__(self):
+        return f"Fuliza for {self.account.user.username} - Used: {self.used}, Limit: {self.limit}"

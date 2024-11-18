@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Account, Transaction
+from .models import *
 from django.contrib import messages
 from decimal import Decimal  # Import Decimal for type conversion
 from django.contrib import messages
@@ -18,14 +18,22 @@ def dashboard(request):
     # Retrieve the account associated with the logged-in user
     account = Account.objects.get(user=user)
 
+    # Retrieve the Fuliza instance associated with the account
+    fuliza = Fuliza.objects.get(account=account)
+
     # Get transactions related to the user (as sender or receiver)
     transactions = Transaction.objects.filter(sender=user) | Transaction.objects.filter(receiver=user)
     transactions = transactions.order_by('-timestamp')  # Sort by timestamp (most recent first)
 
     recent_transactions = transactions[:2]  # Get the 2 most recent transactions
 
+    # Calculate available Fuliza
+    available_fuliza = fuliza.limit - fuliza.used
+
     context = {
         'account': account,
+        'fuliza': fuliza,
+        'available_fuliza': available_fuliza,
         'recent_transactions': recent_transactions,
         'transactions': transactions,
     }

@@ -386,3 +386,42 @@ body {
 #toggle-balance:hover {
     color: #00cd85; /* Add hover color */
 }
+
+
+/* Position the message on the right side of the screen */
+.message-popup {
+    position: fixed;  /* Fixed so that it stays visible on the screen */
+    top: 20px;        /* 20px from the top */
+    right: -300px;    /* Initially off-screen to the right */
+    z-index: 1000;    /* Ensure it appears above other elements */
+    background-color: #28cb0e;  /* Dark background */
+    color: white;      /* White text */
+    border-radius: 8px;   /* Rounded corners */
+    padding: 10px;
+    max-width: 300px;  /* Max width of the message box */
+    opacity: 1;        /* Fully visible initially */
+    transition: right 1s ease-in-out, opacity 1s ease-out;  /* Smooth slide and fade-out effect */
+}
+
+/* Style for individual messages */
+.message-popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.message-popup ul li {
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Class for sliding the message box into view */
+.message-popup.show {
+    right: 20px;  /* Bring the message box 20px from the right */
+}
+
+/* Fade-out effect */
+.fade-out {
+    opacity: 0;  /* Make it invisible */
+    right: -300px;  /* Move it back off-screen */
+}

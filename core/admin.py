@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Account)
 admin.site.register(Transaction)
 admin.site.register(Safaricom)
+admin.site.register(Fuliza)

@@ -37,13 +37,24 @@
             </div>
         </header>
 
+        {% if messages %}
+            <div class="message-popup">
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    
+
         <div class="balance-card">
             <div class="balance-label">Balance</div>
             <div class="balance-amount">
                 <span id="balance-text" class="blur">Ksh. {{ account.balance }}</span>
                 <span id="toggle-balance" class="bi bi-eye" style="cursor: pointer;"></span>
             </div>
-            <div class="fuliza">Available FULIZA: KSH 0.00</div>
+            <div class="fuliza">Available FULIZA:   Ksh {{ available_fuliza }}</div>
         </div>
         
 
