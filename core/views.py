@@ -241,3 +241,8 @@ def transact(request):
         'frequent_contact': frequent_contact,
     }
     return render(request, 'transact.html', context)
+
+
+@login_required
+def search(request):
+    return render(request, 'search.html')
