@@ -155,14 +155,40 @@
         .pochi { background: #6200ea; }
         .send { background: #00c853; }
         .bill { background: #1976d2; }
+
+
+
+        .back-button {
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-button button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            font-size: 1rem;
+            padding: 5px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .back-button button:hover {
+            transform: scale(1.1);
+            color: #007bff;
+        }
+        
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <button class="back-button">
-                <i class="bi bi-arrow-left"></i>
-            </button>
+            <a href="{% url 'transact' %}" class="back-button">
+                <button>
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+            </a>
+            
             <div class="search-container">
                 <i class="bi bi-search search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search">
@@ -181,8 +207,8 @@
         </div>
 
         <div class="bottom-nav">
-            <a href="#" class="nav-item">
-                <i class="bi bi-eye"></i>
+            <a href="{% url 'dashboard'%}" class="nav-item">
+                <i class="bi bi-house"></i>
                 HOME
             </a>
             <a href="#" class="nav-item active">
@@ -193,9 +219,9 @@
                 <i class="bi bi-grid"></i>
                 SERVICES
             </a>
-            <a href="#" class="nav-item">
-                <i class="bi bi-graph-up-arrow"></i>
-                GROW
+            <a href="{% url 'logout'%}" class="nav-item">
+                <i class="bi bi-box-arrow-right"></i>
+                LOGOUT
             </a>
         </div>
     </div>

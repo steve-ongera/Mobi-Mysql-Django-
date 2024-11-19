@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Create MShwari Account</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Account</button>
+    </form>
+</div>

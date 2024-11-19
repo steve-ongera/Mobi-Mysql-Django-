@@ -44,6 +44,30 @@
         }
         
 
+        .header .search-link {
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .header .search-link i {
+            font-size: 1rem; /* Adjusted size for better visibility */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Hover effect */
+        .header .search-link:hover {
+            color: #007bff; /* Change color on hover */
+            transform: scale(1.2); /* Slightly enlarge the icon */
+        }
+        
+        /* Animation for the icon on hover */
+        .header .search-link i:hover {
+            color: #007bff; /* Match the hover color */
+            transform: rotate(360deg); /* Add a spin animation */
+        }
+        
+
         .section-title {
             padding: 20px 20px 15px 20px;
             color: #666;
@@ -185,7 +209,9 @@
     <div class="container">
         <div class="header">
             <h1>TRANSACT</h1>
-            <i class="bi bi-search"></i>
+            <a href="{% url 'search' %}" class="search-link">
+                <i class="bi bi-search"></i>
+            </a>
         </div>
 
         <div class="section-title">FREQUENTS</div>

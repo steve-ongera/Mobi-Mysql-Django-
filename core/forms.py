@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Safaricom
+from .models import Safaricom ,MShwari , Account
 
 class CustomRegistrationForm(forms.ModelForm):
     phone_number = forms.CharField(max_length=15, label="Phone Number")  # Add phone number input
@@ -39,3 +39,13 @@ class CustomRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Details do not match Safaricom records.")
         
         return cleaned_data
+
+
+class MShwariAccountForm(forms.ModelForm):
+    class Meta:
+        model = MShwari
+        fields = ['available_balance', 'locked_balance']  # Do not include 'account' here
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # 'account' is not included as a field, so no need to modify the queryset here

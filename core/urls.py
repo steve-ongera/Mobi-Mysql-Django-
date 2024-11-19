@@ -12,4 +12,9 @@ urlpatterns = [
     path('account_details/', views.account_details, name='account_details'),
     path('transact/', views.transact, name='transact'),
     path('search/', views.search, name='search'),
+
+    path('deposit-funds/', views.deposit_funds, name='deposit_funds'),
+    path('withdraw-funds/', views.withdraw_funds, name='withdraw_funds'),
+    path('lock-funds/', views.lock_funds, name='lock_funds'),
+    path('create-mshwari-account/', views.create_mshwari_account, name='create_mshwari_account'),
 ]

@@ -1,0 +1,23 @@
+<h1>Deposit Funds to M-Shwari Account</h1>
+
+<div>
+    <p>Balance: Ksh {{ mshwari_account.account.balance }}</p>
+    <p>Locked Savings: Ksh {{ mshwari_account.locked_balance }}</p>
+</div>
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="number" name="amount" placeholder="Amount to deposit" required>
+    <button type="submit">Deposit</button>
+</form>
+
+<a href="{% url 'withdraw_funds' %}">Go to Withdraw Funds</a>
+<a href="{% url 'lock_funds' %}">Go to Lock Funds</a>

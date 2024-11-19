@@ -2,7 +2,8 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-from .models import Account, Fuliza
+from .models import *
+from decimal import Decimal
 
 @receiver(post_save, sender=User)
 def create_account(sender, instance, created, **kwargs):
@@ -49,3 +50,41 @@ def update_fuliza_limit(sender, instance, **kwargs):
             'used': 0  # Reset the used amount when limit changes
         }
     )
+
+
+
+@receiver(post_save, sender=MShwari)
+def update_mpesa_balance(sender, instance, created, **kwargs):
+    if not created:  # Trigger only when the account is updated (not created)
+        # Amount to deduct from Mpesa account is the deposited amount
+        deposit_amount = instance.available_balance  # The amount added to MShwari account
+
+        try:
+            # Get the Mpesa account associated with the user
+            mpesa_account = Account.objects.get(user=instance.account.user)
+            
+            # Check if the Mpesa balance is sufficient to deduct the deposit
+            if mpesa_account.balance >= deposit_amount:
+                # Deduct the amount from Mpesa account balance
+                mpesa_account.balance -= deposit_amount
+                mpesa_account.save()  # Save the updated balance
+
+        except Account.DoesNotExist:
+            # If no Mpesa account exists for the user, log or handle the error
+            print(f"Error: No Mpesa account found for {instance.account.user.username}")
+
+
+@receiver(post_save, sender=MShwari)
+def update_mpesa_balance_on_withdrawal(sender, instance, **kwargs):
+    # Check if the available balance was updated (indicating a withdrawal occurred)
+    if 'available_balance' in kwargs.get('update_fields', []):
+        # Check if the balance has decreased (withdrawal)
+        if instance.available_balance < instance.__original_available_balance:
+            withdrawn_amount = instance.__original_available_balance - instance.available_balance
+            # Get the corresponding Mpesa account linked to the MShwari account
+            try:
+                mpesa_account = Account.objects.get(user=instance.account.user)
+                mpesa_account.balance += withdrawn_amount
+                mpesa_account.save()
+            except Account.DoesNotExist:
+                pass  # Handle missing Mpesa account if necessary

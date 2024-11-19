@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Lock Funds in M-Shwari</h2>
+
+    <!-- Display current balance and available funds -->
+    <div class="balance-info">
+        <p>Available Balance: Ksh {{ user_mshwari.account.balance }}</p>
+        <p>Locked Balance: Ksh {{ user_mshwari.locked_balance }}</p>
+    </div>
+
+    <!-- Display success or error messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Locking Funds Form -->
+    <form method="post">
+        {% csrf_token %}
+        <label for="amount">Enter Amount to Lock:</label>
+        <input type="number" id="amount" name="amount" min="0" max="{{ user_mshwari.account.balance }}" required>
+        <label for="lock_period">Enter Lock Period (Days):</label>
+        <input type="number" id="lock_period" name="lock_period" min="1" required>
+        <button type="submit">Lock Funds</button>
+    </form>
+</div>

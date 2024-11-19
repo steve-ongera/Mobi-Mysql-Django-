@@ -43,3 +43,17 @@ class Fuliza(models.Model):
 
     def __str__(self):
         return f"Fuliza for {self.account.user.username} - Used: {self.used}, Limit: {self.limit}"
+    
+class MShwari(models.Model):
+    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+    available_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    locked_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"MShwari account for {self.account.user.username}"
+
+    def get_locked_balance(self):
+        return self.locked_balance
+
+    def get_available_balance(self):
+        return self.available_balance
