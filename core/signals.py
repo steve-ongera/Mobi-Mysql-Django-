@@ -74,17 +74,17 @@ def update_mpesa_balance(sender, instance, created, **kwargs):
             print(f"Error: No Mpesa account found for {instance.account.user.username}")
 
 
-@receiver(post_save, sender=MShwari)
-def update_mpesa_balance_on_withdrawal(sender, instance, **kwargs):
-    # Check if the available balance was updated (indicating a withdrawal occurred)
-    if 'available_balance' in kwargs.get('update_fields', []):
-        # Check if the balance has decreased (withdrawal)
-        if instance.available_balance < instance.__original_available_balance:
-            withdrawn_amount = instance.__original_available_balance - instance.available_balance
-            # Get the corresponding Mpesa account linked to the MShwari account
-            try:
-                mpesa_account = Account.objects.get(user=instance.account.user)
-                mpesa_account.balance += withdrawn_amount
-                mpesa_account.save()
-            except Account.DoesNotExist:
-                pass  # Handle missing Mpesa account if necessary
+# @receiver(post_save, sender=MShwari)
+# def update_mpesa_balance_on_withdrawal(sender, instance, **kwargs):
+#     # Check if the available balance was updated (indicating a withdrawal occurred)
+#     if 'available_balance' in kwargs.get('update_fields', []):
+#         # Check if the balance has decreased (withdrawal)
+#         if instance.available_balance < instance.__original_available_balance:
+#             withdrawn_amount = instance.__original_available_balance - instance.available_balance
+#             # Get the corresponding Mpesa account linked to the MShwari account
+#             try:
+#                 mpesa_account = Account.objects.get(user=instance.account.user)
+#                 mpesa_account.balance += withdrawn_amount
+#                 mpesa_account.save()
+#             except Account.DoesNotExist:
+#                 pass  # Handle missing Mpesa account if necessary
